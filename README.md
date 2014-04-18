@@ -2,4 +2,4 @@
 execute:
 
 
-    python feature.py PATH_TO_BACKGROUND_IMAGE PATH_TO_USER_IMAGE
+    python feature.py PATH_TO_KOR_USER_IMAGE PATH_TO_TWN_USER_IMAGE

@@ -1,5 +1,6 @@
 import sys
 import Image, ImageDraw
+import datetime
 
 def add_corners(im, rad):
     circle = Image.new('L', (rad * 8, rad * 8), 0)
@@ -15,14 +16,28 @@ def add_corners(im, rad):
     im.putalpha(alpha)
     return im
 
-background = Image.open(str(sys.argv[1]))
-user = Image.open(sys.argv[2])
-counter = Image.open('counter.png')
+def getDate():
+    today = datetime.date.today()
+    dateString = today.strftime("%y%m%d")
+    return dateString
 
-user = user.resize((145, 145), Image.ANTIALIAS)
-user = add_corners(user, 20)
+def generate(background, user, country):
+    counter = Image.open('counter.png')
+    user = user.resize((218, 218), Image.ANTIALIAS)
+    user = add_corners(user, 30)
+    background.paste(user, (150, 100), user)
+    background.paste(counter,(123, 78) ,counter)
+    background.save('weekly_people_' + country + '_' + getDate() + '.png')
+    return 
 
-background.paste(user, (100, 66), user)
-background.paste(counter,(82, 52) ,counter)
-background.save('result.png')
+
+user_kor = Image.open(sys.argv[1])
+user_twn = Image.open(sys.argv[2])
+background_kor = Image.open('background/kor.png')
+background_twn = Image.open('background/twn.png')
+
+generate(background_kor, user_kor, 'kor')
+generate(background_twn, user_twn, 'twn')
+
+
 
