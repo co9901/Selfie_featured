@@ -1,3 +1,8 @@
+##Setting
+Install PIL Library:
+
+
+    sudo pip install PIL
 ##Usage
 execute:
 
